@@ -42,23 +42,9 @@ class GitInstance:
     def init() -> bool:
         run_command_fetch_output('git init')
 
+    def is_file_tracked(file: str) -> bool:
+        return not run_command_fetch_output(f"git ls-files --error-unmatch {file}").startswith("error")
+
     @staticmethod
     def is_git_installed() -> bool:
         return run_command_fetch_output('git --version') != "'git' is not recognized as an internal or external command, operable program or batch file."
-
-    @staticmethod
-    def add_and_commit(path: str, commit_message: str) -> None:
-        run_command_fetch_output(f'git add {path}')
-        run_command_fetch_output(f'git commit {path} -m "{commit_message}"')
-
-    @staticmethod
-    def create_local_branch(branch: str, from_: str = "master") -> bool:
-        output = run_command_fetch_output(f'git checkout -b {branch} {from_}')
-
-    @staticmethod
-    def create_new_remote(remote_name: str, remote_url: str) -> None:
-        run_command_fetch_output(f"""git remote set-url "{remote_name}" {remote_url}""")
-
-    @staticmethod
-    def set_branch_remote(local_branch: str, remote: str, remote_branch: str):
-        run_command_fetch_output(f"git branch --set-upstream-to {remote}/{remote_branch} {local_branch}")
