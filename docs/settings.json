@@ -1,0 +1,10 @@
+
+{
+    "SpawnZone": {
+        "description": "",
+        "sub-components":{
+            "bOnlyCountLandDinos": "Only consider land-bound dinos when counting NPCs in this volume",
+            ""
+        }
+    }
+}
