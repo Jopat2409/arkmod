@@ -1,15 +1,25 @@
-[project]
+[tool.poetry]
 name = "arkmod"
-version = "0.0.1"
-description = "Ark modding tools"
-requires-python = ">=3.11"
-dependencies = [
-    "click>=8.1",
-]
+version = "0.1.0"
+description = "Set of command line tools for creating ark mods"
+authors = ["Joe <joantpat@gmail.com>"]
+readme = "README.md"
 
-[project.scripts]
-arkmod = "arkmod.__main__:cli"
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+click = "^8.1.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pytest-git = "^1.7.0"
+
+[tool.poetry.group.build.dependencies]
+pyinstaller = "^6.10.0"
 
 [build-system]
-requires = ["flit_core<4"]
-build-backend = "flit_core.buildapi"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+arkmod="arkmod.arkmod:cli"
+build = "arkmod.pyinstaller:install"
